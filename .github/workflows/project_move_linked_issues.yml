@@ -1,0 +1,16 @@
+name: Move linked issues to Ready for Review
+
+on:
+  pull_request:
+    types:
+      - closed
+
+jobs:
+  if_merged:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Event and PR
+        run: |
+          echo "Event: ${{ github.event }}"
+          echo "PR: ${{ github.event.pull_request }}"
