@@ -12,5 +12,9 @@ jobs:
     steps:
       - name: Print Event and PR
         run: |
-          echo "Event: ${{ github.event }}"
+          echo "Event: ${{ github.event_name }}"
+          echo "PR: ${{ github.event.number }}"
+          echo "Issues: ${{ github.event.pull_request.issue }}"
+          echo "Issues: ${{ github.event.issue.number }}"
           echo "PR: ${{ github.event.pull_request }}"
+          echo "PR: ${{ github.event.pull_request.head }}"
