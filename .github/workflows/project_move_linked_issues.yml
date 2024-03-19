@@ -24,20 +24,16 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const { data: issues } = await github.issues.list({
-              filter: all,
+              filter: 'all',
               owner: context.repo.owner,
               repo: context.repo.repo,
-              issue_number: context.issue.number,
               per_page: 100
             });
-            const linkedIssues = issues.filter(issue => issue.body.includes('Linked issues:'));
-            const linkedIssueNumbers = linkedIssues[0].body.match(/#(\d+)/g).map(issue => issue.replace('#', ''));
-            console.log(linkedIssueNumbers);
-            core.setOutput('linkedIssueNumbers', linkedIssueNumbers.join(','));
+            console.log(issues);
         id: get_linked_issues
-      - name: Print linked issues
-        run: |
-          echo "Linked issues: ${{ steps.get_linked_issues.outputs.linkedIssueNumbers }}"
+      # - name: Print linked issues
+      #   run: |
+      #     echo "Linked issues: ${{ steps.get_linked_issues.outputs.linkedIssueNumbers }}"
 
       # - name: Move Linked Issues to Ready for Review
       #   uses: actions/github-script@v3
