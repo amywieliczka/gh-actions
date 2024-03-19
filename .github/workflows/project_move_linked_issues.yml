@@ -3,7 +3,7 @@ name: Move linked issues to Ready for Review
 on:
   pull_request:
     types:
-      - closed
+      - opened
 
 jobs:
   if_merged:
